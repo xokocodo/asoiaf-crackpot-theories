@@ -1,0 +1,271 @@
+<html>
+<button style="width:500px; height:50px;" onclick="controller();" ><font size="4">Generate Crackpot Theory</font></button>
+</br>
+</br>
+</br>
+<font size="6">
+<div id="out">
+Generate your crackpot theory!
+</div>
+</font>
+</html>
+
+
+<script>
+
+var faction = [
+"Stark",
+"Lannister",
+"Greyjoy",
+"Tyrell",
+"Northern",
+"Maester",
+"Silent Sister",
+"Septon",
+"Crannogmen",
+"Other",
+"Meereenese",
+"Children of the Forest",
+];
+
+var broad_theory = [
+"Grand X Conspiracy",
+"The Xs will fall to ruin",
+"The Xs will rule for 1000 years",
+];
+
+
+var double_action = [
+" is secretly the parent of ",
+" had an affair with ",
+" is secretly ",
+" will kill ",
+" will marry ",
+" is secretly in love with ",
+" hates ",
+" warged into ",
+]
+
+var action = [
+" isn't dead",
+" is dead",
+" is dead",
+" is a secret Targaryen",
+" is a blackfyre",
+" is a faceless man",
+" is Benjen Stark",
+" is Jaqen H'ghar",
+" is a bastard child",
+" is a mermaid",
+" is the Drowned God",
+" is Howland Reed",
+" is Jon's Mother",
+" is Coldhands",
+" is going to become a Kingsguard",
+" is the Night's King",
+" is going to fight at Cersi's trial",
+" is the Knight of the Laughing Tree",
+" killed Joffrey",
+" is the Kindly Man",
+" is Azor Ahai",
+" is an Other",
+" is a Wight",
+" is Robert Strong",
+" is the Hooded Man (in Winterfell)",
+" is the Valonqar",
+" is under a glamour",
+" will end up on the Iron Throne",
+" is a warg",
+" is a dragon",
+" is a direwolf",
+" will become a tree",
+" is a Weirwood",
+" will ride a dragon",
+" is a child of the forest",
+" is King of the Mermaids",
+" will die",
+" is a decendent of Dunk",
+" is working for the Others",
+" is working against magic",
+" wants everyone to die",
+" is the Prince that was Promised",
+" will make a shadowbaby",
+" is Syrio Forel",
+" wrote the Pink Letter",
+" is Alleras Sand",
+" is Aegon Targaryen",
+" ate Jojen",
+" is going to be King",
+" will find dragon eggs",
+];
+
+var people = [
+"Benjen Stark",
+"Daario Naharis",
+"Arya Stark",
+"Catelyn Stark",
+"Ned Stark",
+"Sansa Stark",
+"Bran Stark",
+"Rickon Stark",
+"Danny Targaryen ",
+"Jojen Reed",
+"Mera Reed",
+"Jaqen H'ghar",
+"Aegon",
+"Littlefinger",
+"Varys",
+"Tywin Lannister",
+"Tyrion Lannister",
+"Cersi Lannister",
+"Jamie Lannister",
+"Margery Tyrell",
+"Oberyn Martel",
+"Olena Tyrell",
+"Ramsey Snow",
+"Damphair",
+"Howland Reed",
+"Jon Snow",
+"Asha Greyjoy",
+"Ashara Dayne",
+"Balon Greyjoy",
+"Poderick Payne",
+"Walder Frey",
+"The Blackfish",
+"Theon Greyjoy",
+"Reek",
+"Samwell Tarly",
+"Coldhands",
+"Stannis Baratheon",
+"Brienne",
+"Davos",
+"Jon Connington",
+"Barristan Selmy",
+"Ser Pounce",
+"Patchface",
+"Moon Boy",
+"Butterbumps",
+"Jinglebell",
+"Melisandre",
+"Mance Rayder",
+"Old Nan",
+"The Nights King",
+"Blood Raven",
+"Dolorous Edd",
+"Jorah Mormont",
+"Khal Drogo",
+"Sandor Clegane",
+"Gregor Clegane",
+"The Knight of the Laighing Tree",
+"Mace Tyrell",
+"Lysa Arryn",
+"Jon Arryn",
+"Joffrey Baratheon",
+"Qyburn",
+"Maester Pycelle",
+"Janos Slynt",
+"The Kindly Man",
+"Hodor",
+"Victarion Greyjoy",
+"Tommen Baratheon",
+"Robert Strong",
+"The Hooded Man in Winterfell",
+"Nymeria",
+"Summer",
+"Ghost",
+"Shaggydog",
+"Jeyne Poole",
+"Gilly",
+"Arthur Dayne",
+"Illyrio",
+"Lady Stoneheart",
+"Bronn",
+"Shae",
+"Gendry",
+"Hot Pie",
+"Loras Tyrell",
+"Yigritte",
+"Roose Bolton",
+"Meryn Trant",
+"Renly Baratheon",
+"Thoros of Myr",
+"Ser Dontos",
+"Lyanna Stark",
+"Edmure Tully",
+"Craster",
+"Xaro Xhoan Daxos",
+"Syrio Forel",
+"The Lord of Bones",
+"Rhaegar",
+"Tormund Giant's Bane",
+"Maggy the Frog",
+"The Ghost of Hollow Hill",
+"The High Septon",
+"Theon's Favorite Toy",
+"Varamyr Sixskins",
+"Kevan Lannister",
+"Nimble Dick",
+];
+
+
+var person_count = people.length;
+var action_count = action.length;
+var double_action_count = double_action.length;
+var theory_count = broad_theory.length;
+var faction_count = faction.length;
+
+function getPerson(){
+var randomnumber=Math.floor(Math.random()*person_count);
+return people[randomnumber];
+}
+
+function getFaction(){
+var randomnumber=Math.floor(Math.random()*faction_count);
+return faction[randomnumber];
+}
+
+function getBroadTheory(){
+var randomnumber=Math.floor(Math.random()*theory_count);
+return broad_theory[randomnumber];
+}
+
+function getDoubleAction(){
+var randomnumber=Math.floor(Math.random()*double_action_count);
+return double_action[randomnumber];
+}
+
+function getAction(){
+var randomnumber=Math.floor(Math.random()*action_count);
+return action[randomnumber];
+}
+
+// 80% Chance of Person + Action
+// 15% Chance of Person + Double Action + Person
+// 5% Chance of Faction + Theory
+
+function controller(){
+
+    var main_random_number=Math.floor(Math.random()*100);
+
+    if(main_random_number < 80){
+        var person=getPerson();
+        var action=getAction();
+        var theory = person + action;
+        document.getElementById('out').innerHTML = theory;
+    }
+    else if(main_random_number < 95){
+        var person1=getPerson();
+        var person2=getPerson();
+        var double_action=getDoubleAction();
+        var theory = person1 + double_action + person2;
+        document.getElementById('out').innerHTML = theory;
+    }
+    else{
+        var faction=getFaction();
+        var broad_theory=getBroadTheory();
+        var theory = broad_theory.replace("X", faction);
+        document.getElementById('out').innerHTML = theory;
+    }
+}
+
+</script>
